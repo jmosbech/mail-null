@@ -2,4 +2,7 @@ extends layout
 
 block content
   h1= 'mail/null'
-  p Welcome to #{title}
+  ul
+      each val in mails
+          li= val.from
+            pre= val.content

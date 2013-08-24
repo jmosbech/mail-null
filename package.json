@@ -10,7 +10,8 @@
 		"simplesmtp": "~0.3.8",
 		"express": "3.3.5",
 		"jade": "*",
-		"stylus": "*"
+		"stylus": "*",
+		"mailparser": "0.3.6"
 	},
 	"devDependencies": {
 		"nodemailer": "~0.5.2",
