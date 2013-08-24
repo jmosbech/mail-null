@@ -1,5 +1,5 @@
 {
-	"name": "mail-sink",
+	"name": "mail-null",
 	"version": "0.0.1",
 	"description": "Fake SMTP server that does not deliver the received mails. Useful for debugging and testing apps that send e-mail.",
 	"main": "server.js",
