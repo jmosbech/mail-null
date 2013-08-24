@@ -7,9 +7,11 @@ mailparser.on('end', function(email){
 
 var port = process.env.SMTP_PORT || 2525;
 
-simplesmtp.createSimpleServer({SMTPBanner:'/mail/null - where your test mails go to die'}, function(req){
-	req.pipe(mailparser);
-	req.accept();
-}).listen(port);
+simplesmtp.createSimpleServer(
+	{SMTPBanner:'/mail/null - where your test mails go to die'},
+	function(req){
+		req.pipe(mailparser);
+		req.accept();
+	}).listen(port);
 
-console.log('mail-sink server listening on port ' + port);
+console.log('SMTP server listening on port ' + port);

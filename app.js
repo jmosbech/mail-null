@@ -20,6 +20,7 @@ app.use(express.methodOverride());
 app.use(app.router);
 app.use(require('stylus').middleware(__dirname + '/public'));
 app.use(express.static(path.join(__dirname, 'public')));
+app.use(express.static(path.join(__dirname, 'bower_components')));
 
 // development only
 if ('development' === app.get('env')) {
@@ -29,7 +30,7 @@ if ('development' === app.get('env')) {
 app.get('/', routes.index);
 
 var server = http.createServer(app).listen(app.get('port'), function(){
-  console.log('Express server listening on port ' + app.get('port'));
+  console.log('Web server server listening on port ' + app.get('port'));
 });
 
 var io = require('socket.io').listen(server);
