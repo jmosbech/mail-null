@@ -1,14 +1,15 @@
-var emails = new Backbone.Collection();
+var EmailCollection = Backbone.Collection.extend({model: Backbone.DeepModel});
 
 var LineView = Backbone.View.extend({
-	element: 'tr',
+	tagName: 'tr',
 	bindings: {
 		'.subject': 'subject',
-		'.from': 'from.email'
-
+		'.date': 'headers.date',
+		'.from': 'headers.from',
+		'.to': 'headers.to'
 	},
 	render: function() {
-		this.$el.html('<td class="from"></td><td class="subject"></td>');
+		this.$el.html('<td class="to"></td><td class="from"/><td class="subject"/><td class="date"/>');
 		this.stickit();
 		return this;
 	}
@@ -20,19 +21,24 @@ var ListView = Backbone.View.extend({
 		this.listenTo(this.collection, 'add', this.addOne);
 	},
 	addOne: function(model){
+		console.log('addOne', model.cid);
 		var view = new LineView({model: model});
 		this.$el.append(view.render().$el);
 		this.subviews.push(view);
 	}
 });
 
-var sockets = io.connect();
-sockets.on('got_mail',function(msg){
-	emails.add(msg);
-});
-
 var app = (function(){
-	var view = new ListView({collection: emails});
+	window.emails = new EmailCollection();
+	var view = new ListView({
+		collection: window.emails,
+		el: $('tbody')
+	});
 	view.render();
-	$('tbody').append(view.$el);
+
+	var sockets = io.connect();
+	sockets.on('got_mail',function(msg){
+		window.emails.add(msg);
+		console.log(msg);
+	});
 })();
