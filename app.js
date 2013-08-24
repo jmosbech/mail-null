@@ -10,6 +10,16 @@ var path = require('path');
 
 var app = express();
 
+var server = require('http').createServer(app)
+var io = require('socket.io').listen(server);
+
+io.sockets.on('connection', function (socket) {
+	socket.emit('mails', global.mails);
+	global.mails.on('got_mail', function (mail) {
+		socket.emit('got_mail', mail);
+	});
+});
+
 // all environments
 app.set('port', process.env.PORT || 3000);
 app.set('views', __dirname + '/views');

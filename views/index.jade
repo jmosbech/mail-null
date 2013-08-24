@@ -1,8 +1,11 @@
 extends layout
 
 block content
-  h1= 'mail/null'
-  ul
-      each val in mails
-          li= val.from
-            pre= val.content
+    nav#messages
+        table
+            thead
+                th From
+                th To
+                th Subject
+                th Received
+            tbody
