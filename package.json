@@ -1,0 +1,31 @@
+{
+	"name": "mail-sink",
+	"version": "0.0.1",
+	"description": "Fake SMTP server that does not deliver the received mails. Useful for debugging and testing apps that send e-mail.",
+	"main": "server.js",
+	"scripts": {
+		"test": "mocha"
+	},
+	"dependencies": {
+		"simplesmtp": "~0.3.8",
+		"express": "3.3.5",
+		"jade": "*",
+		"stylus": "*"
+	},
+	"devDependencies": {
+		"nodemailer": "~0.5.2",
+		"mocha": "~1.12.0"
+	},
+	"keywords": [
+		"smtp",
+		"devlopment",
+		"test",
+		"fake",
+		"dummy",
+		"mock",
+		"email",
+		"e-mail"
+	],
+	"author": "Jonas Mosbech",
+	"license": "BSD-2-Clause"
+}
