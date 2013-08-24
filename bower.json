@@ -1,20 +1,22 @@
 {
-  "name": "mail-null",
-  "version": "0.0.1",
-  "authors": [
-    "Jonas Mosbech <jonas@mosbech.net>"
-  ],
-  "license": "MIT",
-  "private": true,
-  "ignore": [
-    "**/.*",
-    "node_modules",
-    "bower_components",
-    "test",
-    "tests"
-  ],
-  "dependencies": {
-    "backbone": "~1.0.0",
-    "underscore": "1.5.1"
-  }
+	"name": "mail-null",
+	"version": "0.0.1",
+	"authors": [
+		"Jonas Mosbech <jonas@mosbech.net>"
+	],
+	"license": "MIT",
+	"private": true,
+	"ignore": [
+		"**/.*",
+		"node_modules",
+		"bower_components",
+		"test",
+		"tests"
+	],
+	"dependencies": {
+		"backbone": "~1.0.0",
+		"underscore": "~1.5.1",
+		"backbone.stickit": "",
+		"jquery": "~1.9"
+	}
 }

@@ -14,7 +14,7 @@ var message = {
 	to: '"Receiver Name" <nodemailer@disposebox.com>',
 
 	// Subject of the message
-	subject: 'Nodemailer is unicode friendly ✔', //
+	subject: 'My Test Subject ✔', //
 
 	headers: {
 		'X-Laziness-level': 1000

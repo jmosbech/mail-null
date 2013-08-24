@@ -24,7 +24,7 @@ app.use(express.static(path.join(__dirname, 'bower_components')));
 
 // development only
 if ('development' === app.get('env')) {
-  app.use(express.errorHandler());
+	app.use(express.errorHandler());
 }
 
 app.get('/', routes.index);

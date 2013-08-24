@@ -1,6 +1,8 @@
 {
 	"predef": [
-		"io"
+		"io",
+		"Backbone",
+		"_"
 	],
 	"asi" : false,
 	"bitwise" : true,
