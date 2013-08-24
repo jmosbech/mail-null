@@ -10,16 +10,6 @@ var path = require('path');
 
 var app = express();
 
-var server = require('http').createServer(app)
-var io = require('socket.io').listen(server);
-
-io.sockets.on('connection', function (socket) {
-	socket.emit('mails', global.mails);
-	global.mails.on('got_mail', function (mail) {
-		socket.emit('got_mail', mail);
-	});
-});
-
 // all environments
 app.set('port', process.env.PORT || 3000);
 app.set('views', __dirname + '/views');
@@ -38,6 +28,17 @@ if ('development' === app.get('env')) {
 
 app.get('/', routes.index);
 
-http.createServer(app).listen(app.get('port'), function(){
+var server = http.createServer(app).listen(app.get('port'), function(){
   console.log('Express server listening on port ' + app.get('port'));
+});
+
+var io = require('socket.io').listen(server);
+
+io.set('log level', 1);
+
+io.sockets.on('connection', function (socket) {
+	socket.emit('got_mail', global.mails.mails);
+	global.mails.on('got_mail', function (mail) {
+		socket.emit('got_mail', [mail]);
+	});
 });
