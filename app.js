@@ -30,7 +30,7 @@ if ('development' === app.get('env')) {
 app.get('/', routes.index);
 
 var server = http.createServer(app).listen(app.get('port'), function(){
-  console.log('Web server server listening on port ' + app.get('port'));
+  console.log('Web server listening on port ' + app.get('port'));
 });
 
 var io = require('socket.io').listen(server);

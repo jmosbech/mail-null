@@ -1,7 +1,37 @@
 body {
-  padding: 50px;
+  padding: 0px 20px;
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
 }
-a {
-  color: #00b7ff;
+h1 {
+  font-family: monospace;
+}
+table {
+  width: 100%;
+  border-collapse: collapse;
+}
+th {
+  background-color: #25261e;
+  color: #fff;
+  font-weight: normal;
+}
+td {
+  background-color: #eee;
+  cursor: pointer;
+}
+th,
+td {
+  padding: 8px;
+  text-align: left;
+}
+.to,
+.from,
+.date {
+  width: 20%;
+  white-space: nowrap;
+}
+.subject {
+  width: 40%;
+}
+.active-mail {
+  background-color: #ccc;
 }
