@@ -3,11 +3,9 @@
 var Details = React.createClass({
 	render: function () {
 		var email = this.props.email;
-		var a = email ? email.attachments[0].content : '';
 		var html = '';
 		if (email) {
-			html = email.html;
-
+			html = email.html || '<pre>' + email.text + '</pre>';
 			email.attachments.forEach(function(attachment){
 				var regex = new RegExp('cid:' + attachment.contentId, 'g');
 				html = html.replace(regex, "data:image/png;base64," + attachment.content);
