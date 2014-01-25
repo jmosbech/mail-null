@@ -2,8 +2,7 @@ var express = require('express');
 var routes = require('./routes');
 var http = require('http');
 var path = require('path');
-var reactTools = require('react-tools');
-var fs = require('fs');
+var precompileJsx = require('./lib/precompileJsx');
 var storage = require('./lib/storage');
 
 var app = express();
@@ -16,27 +15,8 @@ app.use(express.logger('dev'));
 app.use(express.bodyParser());
 app.use(express.methodOverride());
 app.use(app.router);
-app.use(require('stylus').middleware(__dirname + '/public'));
-app.use(function precompileJSX(req, res, next) {
-	if(req.url.slice(-4) !== '.jsx') return next();
-	// do some caching here
-	var file = path.join(__dirname, 'public', req.url);
-	fs.readFile(file, 'utf8', function(error, content) {
-		if(error) {
-			res.send(500, 'Could not load ' + req.url +'\n' +
-				error.stack || error.message);
-			return;
-		}
-		try {
-			var compiled = reactTools.transform(content);
-			res.set('content-type', 'application/javascript;charset=utf-8');
-			res.send(compiled);
-		} catch(e) {
-			res.send(500, 'Could not compile JSX: ' + req.url + '\n' +
-				(e.stack || 'Reason: ' + e.message));
-		}
-	});
-});
+app.use(require('stylus').middleware(path.join(__dirname, 'public')));
+app.use(precompileJsx(path.join(__dirname, 'public')));
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(express.static(path.join(__dirname, 'bower_components')));
 

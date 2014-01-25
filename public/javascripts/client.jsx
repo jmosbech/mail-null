@@ -12,7 +12,7 @@ var App = React.createClass({
 		return (
 			<div>
 				<List emails={this.props.emails} selected={this.state.selected} onEmailSelected={this.handleEmailSelected} />
-				<Details email={ this.state.selected } />
+				<Details email={this.state.selected} />
 			</div>);
 	}
 });
