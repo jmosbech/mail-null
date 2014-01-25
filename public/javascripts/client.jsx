@@ -11,7 +11,9 @@ var App = React.createClass({
 		console.log('App.render()', this.state);
 		return (
 			<div>
-				<List emails={this.props.emails} selected={this.state.selected} onEmailSelected={this.handleEmailSelected} />
+				<List emails={this.props.emails} 
+					selected={this.state.selected} 
+					onEmailSelected={this.handleEmailSelected} />
 				<Details email={this.state.selected} />
 			</div>);
 	}
@@ -25,7 +27,7 @@ var emails = [];
 function init (mails) {
 	console.log('init', mails);
 	emails = mails;
-	React.renderComponent(<App emails={emails}/>, document.body);
+	React.renderComponent(<App emails={emails.reverse()}/>, document.body);
 }
 
 function gotMail (mail) {

@@ -3,7 +3,7 @@ var List = React.createClass({
 	render: function () {
 		return (
 			<ul>
-             {this.props.emails.map(function (email, i) {
+				{this.props.emails.map(function (email, i) {
 				return (
 					<MailItem
 						key={i}
@@ -31,7 +31,7 @@ var MailItem = React.createClass({
 			<li className={classes} >
 				<h2 className="subject">{email.subject}</h2>
 				<h3 className="from">
-					"{this.props.email.from[0].name}" &lt;{email.from[0].address}&gt;
+					{this.props.email.from[0].name} &lt;{email.from[0].address}&gt;
 				</h3>
 				<div className="date">{email.headers.date}</div>
 			</li>

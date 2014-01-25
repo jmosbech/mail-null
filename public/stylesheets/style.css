@@ -5,30 +5,8 @@ body {
 h1 {
   font-family: monospace;
 }
-table {
+.details-content {
   width: 100%;
-  border-collapse: collapse;
-}
-th {
-  background-color: #25261e;
-  color: #fff;
-  font-weight: normal;
-}
-td {
-  background-color: #eee;
-  cursor: pointer;
-}
-th,
-td {
-  padding: 8px;
-  text-align: left;
-}
-.to,
-.from,
-.date {
-  width: 20%;
-  white-space: nowrap;
-}
-.active-mail {
-  background-color: #ccc;
+  display: block;
+  border: 1px solid #808080;
 }
