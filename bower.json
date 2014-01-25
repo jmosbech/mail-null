@@ -14,11 +14,6 @@
     "tests"
   ],
   "dependencies": {
-    "backbone": "~1.0.0",
-    "underscore": "~1.5.1",
-    "backbone.stickit": "~0.6.3",
-    "backbone-deep-model": "~0.10.4",
-    "jquery": "~1.9",
     "react": "~0.8.0"
   }
 }
