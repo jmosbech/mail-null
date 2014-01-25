@@ -39,10 +39,3 @@ var MailItem = React.createClass({
 	}
 });
 
-var Details = React.createClass({
-	render: function () {
-		return <div>
-			{this.props.email && this.props.email.headers.date}
-		</div>;
-	}
-});
