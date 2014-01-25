@@ -1,8 +1,9 @@
 {
 	"name": "mail-null",
 	"version": "0.0.1",
-	"description": "Fake SMTP server that does not deliver the received mails. Useful for debugging and testing apps that send e-mail.",
+	"description": "Fake SMTP server that doesn't deliver the received mails. Useful for debugging and testing apps that send email.",
 	"main": "server.js",
+	"start": "node server.js",
 	"scripts": {
 		"test": "mocha"
 	},
@@ -19,7 +20,7 @@
 	},
 	"keywords": [
 		"smtp",
-		"devlopment",
+		"development",
 		"test",
 		"fake",
 		"dummy",
@@ -27,6 +28,10 @@
 		"email",
 		"e-mail"
 	],
-	"author": "Jonas Mosbech",
+	"author": {
+		"name": "Jonas Mosbech",
+		"email": "jonas@mosbech.net",
+		"url": "http://github.com/jmosbech"
+	},
 	"license": "MIT"
 }

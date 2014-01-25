@@ -1,5 +1,5 @@
 body {
-  padding: 0px 20px;
+  padding: 0 20px;
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
 }
 h1 {
@@ -28,9 +28,6 @@ td {
 .date {
   width: 20%;
   white-space: nowrap;
-}
-.subject {
-  width: 40%;
 }
 .active-mail {
   background-color: #ccc;

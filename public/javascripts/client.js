@@ -1,9 +1,9 @@
 var EmailCollection = Backbone.Collection.extend({
 	model: Backbone.DeepModel,
-	initialize: function(){
+	initialize: function () {
 		this.bind('activate', this.onActivate);
 	},
-	onActivate: function(model){
+	onActivate: function (model) {
 		this.active = model;
 	}
 });
@@ -19,10 +19,10 @@ var LineView = Backbone.View.extend({
 	events: {
 		'click': 'activate'
 	},
-	render: function() {
+	render: function () {
 		console.log(this.model.toJSON());
-		if(this.model.collection.active && 
-			this.model.collection.active.cid === this.model.cid){
+		if (this.model.collection.active &&
+			this.model.collection.active.cid === this.model.cid) {
 			this.$el.addClass('active-mail');
 		}
 		this.$el.html('<td class="to"/>' +
@@ -32,25 +32,25 @@ var LineView = Backbone.View.extend({
 		this.stickit();
 		return this;
 	},
-	activate: function(){
+	activate: function () {
 		this.model.collection.trigger('activate', this.model);
 	}
 });
 
 var ListView = Backbone.View.extend({
-	initialize: function(){
+	initialize: function () {
 		_.bindAll(this, 'renderOne');
 		this.subviews = [];
 		this.listenTo(this.collection, 'add', this.renderOne);
 		this.listenTo(this.collection, 'activate', this.render);
 	},
-	render: function(){
-		_.each(this.subviews, function(view){
+	render: function () {
+		_.each(this.subviews, function (view) {
 			view.remove();
 		});
 		this.collection.each(this.renderOne);
 	},
-	renderOne: function(model){
+	renderOne: function (model) {
 		console.log('renderOne	', model.cid);
 		var view = new LineView({model: model});
 		this.$el.append(view.render().$el);
@@ -59,25 +59,25 @@ var ListView = Backbone.View.extend({
 });
 
 var DetailsView = Backbone.View.extend({
-	initialize: function(options){
+	initialize: function (options) {
 		this.listenTo(this.collection, 'activate', this.render);
 	},
 	bindings: {
 		'.html': 'html',
 		'.text': 'text'
 	},
-	render: function(){
+	render: function () {
 		var active = this.collection.active;
 		if (!active) return;
- 		var tmpl = _.template('<%- data %>', 
- 			{ data: JSON.stringify(active.toJSON(), null, '  ') });
+		var tmpl = _.template('<%- data %>',
+			{ data: JSON.stringify(active.toJSON(), null, '  ') });
 
 		this.$el.html(tmpl);
 		return this;
 	}
 });
 
-var app = (function(){
+var app = (function () {
 	window.emails = new EmailCollection();
 	var listView = new ListView({
 		collection: window.emails,
@@ -92,7 +92,7 @@ var app = (function(){
 	detailsView.render();
 
 	var sockets = io.connect();
-	sockets.on('got_mail',function(msg){
+	sockets.on('got_mail', function (msg) {
 		window.emails.add(msg);
 		console.log(msg);
 	});
