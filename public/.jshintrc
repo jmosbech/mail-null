@@ -1,9 +1,6 @@
 {
 	"predef": [
 		"io",
-		"Backbone",
-		"_",
-		"$",
 		"React"
 	],
 	"asi" : false,
