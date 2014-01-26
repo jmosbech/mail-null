@@ -8,9 +8,9 @@ var App = React.createClass({
 	},
 	render: function () {
 		return (
-			<div>
-				<List emails={this.props.emails} 
-					selected={this.state.selected} 
+			<div className="app">
+				<List emails={this.props.emails}
+					selected={this.state.selected}
 					onEmailSelected={this.handleEmailSelected} />
 				<Details email={this.state.selected} />
 			</div>);

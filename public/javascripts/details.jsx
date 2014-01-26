@@ -2,6 +2,7 @@
 
 var Details = React.createClass({
 	handleMessageEvent: function(e){
+		console.log('message event!', e, this.refs);
 		if (!this.refs || !this.refs.iframe) return;
 		var iframe = this.refs.iframe.getDOMNode();
 		iframe.style.height = e.data.height + 'px';
@@ -13,13 +14,15 @@ var Details = React.createClass({
 		window.removeEventListener('message', this.handleMessageEvent);
 	},
 	componentWillReceiveProps: function(newProps){
-		if(newProps.email == this.props.email) return;
+		console.log('componentWillReceiveProps', newProps);
+		if(newProps.email === this.props.email) return;
 		this.handleMessageEvent({data: {height: 0}});
 	},
 	render: function () {
 		var email = this.props.email;
 		var html = '';
 		if (email) {
+			console.log('updating iframe');
 			html = email.html || '<pre>' + email.text + '</pre>';
 			html += '<script>window.parent.postMessage({height: document.body.scrollHeight}, "*");</script>';
 			email.attachments.forEach(function(attachment){
@@ -30,13 +33,13 @@ var Details = React.createClass({
 		return (
 			<div className="details">
 				<DetailsHeader email={email} />
-				<br/>
-				{html && <iframe
+				{html && <div className="iframe-container"><iframe
 					ref="iframe"
 					className="details-content"
 					src={"data:text/html;charset=utf-8," + escape(html)}
 					frameBorder="0"
-					scrolling="no"></iframe>}
+					scrolling="no"></iframe></div>}
+
 			</div>
 			);
 	}
@@ -50,19 +53,18 @@ var DetailsHeader = React.createClass({
 			var to = email.to;
 
 		return (
-			<div className="details-header">
-				<span className="from">{from.name} &lt;{from.address}&gt;</span>
-				<span className="subject">{email.subject}</span>
-				<span className="date">{email.headers.date}</span>
-				<span className="to">
+			<dl className="details-header">
+				<dt>From:</dt><dd className="from">{from.name} &lt;{from.address}&gt;</dd>
+				<dt>To:</dt><dd className="to">
 					{email.to.map(function (to, i) {
 					 return (
-						 <span key={i}>{to.name} &lt;{to.address}&gt;;</span>
+						 <span className="address" key={i}>{to.name} &lt;{to.address}&gt;</span>
 						);
 					}, this)}
-					{email.to}
-				</span>
-			</div>
+				</dd>
+				<dt>Date:</dt><dd className="date">{email.headers.date}</dd>
+				<dt>Subject:</dt><dd className="subject">{email.subject}</dd>
+			</dl>
 		);
 	}
 });

@@ -1,11 +1,98 @@
+sidebar-width = 340px
+line-height = 1.5
+
+/* ---- */
+
+*,
+*:before,
+*:after
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+
+html, body
+  margin: 0
+  padding: 0
+  height: 100%
+
 body
-  padding: 0 20px
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif
 
-h1
-  font-family: monospace
+.app
+  display: table
+
+.app,
+.details
+  min-height: 100%
+  height: 100%
+  width: 100%
+
+.sidebar
+  display: table-cell
+  width: sidebar-width
+
+.sidebar ul
+  list-style-type: none
+  padding: 0
+  margin: 0
+
+.message
+  border-top: 1px solid transparent
+  border-bottom: 1px solid #e8e9ec
+  padding: 10px
+  overflow: hidden
+  line-height: line-height
+
+.message .from
+  font-weight: bold
+
+.message .from,
+.message .subject
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
+
+.message .date
+  font-size: 80%
+
+.message.selected
+  background-color: #eee
+  border-color: #b8babb
+  box-shadow: inset 0px 5px 15px 0px rgba(0,0,0,0.10);
+
+.details
+  display: table-cell
+  border-left: 1px solid #a7a7a7
+  width: auto
+
+.details-header
+  margin: 10px
+  background-color: #e6e6e6
+  border-radius: 5px
+  padding: 10px
+  overflow: hidden
+  line-height: line-height
+
+details-label-width = 70px
+
+.details-header dt
+  float:left
+  width: details-label-width
+  text-align: right
+  padding-right: 10px
+
+.details-header dd
+  margin-left: details-label-width
+
+.details-header .address:after
+  content: "; "
+
+.details-header .address:last-child:after
+  content: ""
+
+.iframe-container
+  margin: 10px
+  border: 1px solid #a7a7a7
 
 .details-content
-  width: 100%;
-  display: block;
-  border: 1px solid gray;
+  width: 100%
+  display: block
