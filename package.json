@@ -13,7 +13,8 @@
     "jade": "*",
     "stylus": "*",
     "mailparser": "0.3.6",
-    "react-tools": "~0.8.0"
+    "react-tools": "~0.8.0",
+    "socket.io": "~0.9.16"
   },
   "devDependencies": {
     "nodemailer": "~0.5.2",
