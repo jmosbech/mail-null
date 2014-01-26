@@ -20,7 +20,6 @@ var List = React.createClass({
 
 var MailItem = React.createClass({
 	render: function () {
-		console.log('MailItem.render', this.props);
 		var email = this.props.email;
 		var classes = 'message';
 		if (this.props.selected) {

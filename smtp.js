@@ -12,7 +12,7 @@ simplesmtp.createSimpleServer(
 			email.attachments = (email.attachments||[]).map(function(attachment){
 				var b = new Buffer(attachment.content);
 				attachment.content = b.toString('base64');
-				return attachment;	
+				return attachment;
 			});
 			storage.push(email);
 		});
