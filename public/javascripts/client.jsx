@@ -24,7 +24,7 @@ var emails = [];
 
 function init (mails) {
 	emails = mails;
-	React.renderComponent(<App emails={emails.reverse()}/>, document.body);
+	React.renderComponent(<App emails={emails.slice().reverse()}/>, document.body);
 }
 
 function gotMail (mail) {

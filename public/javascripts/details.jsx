@@ -23,8 +23,8 @@ var Details = React.createClass({
 		var html = '';
 		if (email) {
 			console.log('updating iframe');
-			html = email.html || '<pre>' + email.text + '</pre>';
-			html += '<script>window.parent.postMessage({height: document.body.scrollHeight}, "*");</script>';
+			html = email.html || '<pre>' + (email.text || '') + '</pre>';
+			html += '<script>window.parent.postMessage({height: document.body.scrollHeight}, "*");/*'+email.headers['message-id']+'*/</script>';
 			email.attachments.forEach(function(attachment){
 				var regex = new RegExp('cid:' + attachment.contentId, 'g');
 				html = html.replace(regex, "data:image/png;base64," + attachment.content);
