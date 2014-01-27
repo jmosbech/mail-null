@@ -36,7 +36,7 @@ var Details = React.createClass({
 				{html && <div className="iframe-container"><iframe
 					ref="iframe"
 					className="details-content"
-					src={"data:text/html;charset=utf-8," + escape(html)}
+					src={"data:text/html;charset=utf-8," + encodeURIComponent(html)}
 					frameBorder="0"
 					scrolling="no"></iframe></div>}
 
