@@ -1,8 +1,9 @@
 /** @jsx React.DOM */
 
-var Details = React.createClass({
+var React = require('react');
+
+module.exports = React.createClass({
 	handleMessageEvent: function(e){
-		console.log('message event!', e, this.refs);
 		if (!this.refs || !this.refs.iframe) return;
 		var iframe = this.refs.iframe.getDOMNode();
 		iframe.style.height = e.data.height + 'px';
@@ -14,7 +15,6 @@ var Details = React.createClass({
 		window.removeEventListener('message', this.handleMessageEvent);
 	},
 	componentWillReceiveProps: function(newProps){
-		console.log('componentWillReceiveProps', newProps);
 		if(newProps.email === this.props.email) return;
 		this.handleMessageEvent({data: {height: 0}});
 	},
@@ -22,7 +22,6 @@ var Details = React.createClass({
 		var email = this.props.email;
 		var html = '';
 		if (email) {
-			console.log('updating iframe');
 			html = email.html || '<pre>' + (email.text || '') + '</pre>';
 			html += '<script>window.parent.postMessage({height: document.body.scrollHeight}, "*");/*'+email.headers['message-id']+'*/</script>';
 			email.attachments.forEach(function(attachment){

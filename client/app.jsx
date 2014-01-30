@@ -1,4 +1,9 @@
 /** @jsx React.DOM */
+
+var React = require('react');
+var List = require('./list.jsx');
+var Details = require('./details.jsx');
+
 var App = React.createClass({
 	getInitialState: function () {
 		return {selected: null};
@@ -31,4 +36,3 @@ function gotMail (mail) {
 	emails.push(mail);
 	init(emails);
 }
-

@@ -2,23 +2,22 @@
   "name": "mail-null",
   "version": "0.0.1",
   "description": "Fake SMTP server that doesn't deliver the received mails. Useful for debugging and testing apps that send email.",
-  "main": "server.js",
-  "start": "node server.js",
   "scripts": {
-    "test": "mocha"
+    "start": "node index.js",
+    "watch": "nodemon ."
   },
   "dependencies": {
     "simplesmtp": "~0.3.8",
     "express": "3.3.5",
-    "jade": "*",
     "stylus": "*",
     "mailparser": "0.3.6",
-    "react-tools": "~0.8.0",
-    "socket.io": "~0.9.16"
+    "socket.io": "~0.9.16",
+    "react": "~0.8.0",
+    "react-app-bundler": "~0.2.1"
   },
   "devDependencies": {
     "nodemailer": "~0.5.2",
-    "mocha": "~1.12.0"
+    "nodemon": "~1.0.14"
   },
   "keywords": [
     "smtp",
@@ -34,6 +33,10 @@
     "name": "Jonas Mosbech",
     "email": "jonas@mosbech.net",
     "url": "http://github.com/jmosbech"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:jmosbech/mail-null.git"
   },
   "license": "MIT"
 }
