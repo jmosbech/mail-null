@@ -7,7 +7,7 @@
     "watch": "nodemon ."
   },
   "dependencies": {
-    "simplesmtp": "~0.3.8",
+    "simplesmtp": "~0.3.20",
     "express": "3.3.5",
     "stylus": "*",
     "mailparser": "0.3.6",
