@@ -2,7 +2,7 @@ var express = require('express');
 var http = require('http');
 var path = require('path');
 var storage = require('./lib/storage');
-var bundler  = require('react-app-bundler');
+var browserify = require('connect-browserify');
 
 var app = express();
 
@@ -12,11 +12,8 @@ app.use(express.logger('dev'));
 
 app.use(require('stylus').middleware(path.join(__dirname, 'public')));
 
-var b = bundler.create(path.join(__dirname, 'client/app.jsx'),  {
-	watch: true,
-	debug: 'development' === app.get('env'),
-	logger: console});
-app.use('/bundle.js', bundler.serve(b));
+var debug = process.env.NODE_ENV !== 'production';
+app.get('/bundle.js', browserify('./client/app.jsx', {debug: debug, watch: debug}));
 
 app.use(express.static(path.join(__dirname, 'public')));
 

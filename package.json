@@ -13,7 +13,8 @@
     "mailparser": "0.3.6",
     "socket.io": "~0.9.16",
     "react": "~0.8.0",
-    "react-app-bundler": "~0.2.1"
+    "connect-browserify": "~1.0.0",
+    "reactify": "~0.7.0"
   },
   "devDependencies": {
     "nodemailer": "~0.5.2",
@@ -38,5 +39,10 @@
     "type": "git",
     "url": "git@github.com:jmosbech/mail-null.git"
   },
-  "license": "MIT"
+  "license": "MIT",
+  "browserify": {
+    "transform": [
+      "reactify"
+    ]
+  }
 }
