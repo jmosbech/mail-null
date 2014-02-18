@@ -1,5 +1,5 @@
 var simplesmtp = require('simplesmtp');
-var MailParser = require('MailParser').MailParser;
+var MailParser = require('mailparser').MailParser;
 var storage = require('./lib/storage');
 
 var port = process.env.SMTP_PORT || 2525;
