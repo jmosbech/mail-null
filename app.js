@@ -3,6 +3,9 @@ var http = require('http');
 var path = require('path');
 var storage = require('./lib/storage');
 var browserify = require('connect-browserify');
+var reactify = require('reactify');
+var uglifyify = require('uglifyify');
+var envify = require('envify');
 
 var app = express();
 
@@ -13,7 +16,17 @@ app.use(express.logger('dev'));
 app.use(require('stylus').middleware(path.join(__dirname, 'public')));
 
 var debug = process.env.NODE_ENV !== 'production';
-app.get('/bundle.js', browserify('./client/app.jsx', {debug: debug, watch: debug}));
+var transforms = [reactify, envify];
+if (!debug) {
+	transforms.push(uglifyify);
+}
+app.get('/bundle.js', browserify.serve({
+	entry: './client/app.jsx',
+	debug: debug,
+	watch: debug,
+	transforms: transforms,
+	extensions: ['.jsx']
+}));
 
 app.use(express.static(path.join(__dirname, 'public')));
 

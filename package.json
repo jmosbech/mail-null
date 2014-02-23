@@ -15,7 +15,8 @@
     "react": "^0.9.0",
     "connect-browserify": "~1.0.0",
     "reactify": "^0.7.0",
-    "envify": "^1.2.1"
+    "envify": "^1.2.1",
+    "uglifyify": "^1.2.3"
   },
   "devDependencies": {
     "nodemailer": "~0.5.2",
@@ -40,10 +41,5 @@
     "type": "git",
     "url": "git@github.com:jmosbech/mail-null.git"
   },
-  "license": "MIT",
-  "browserify": {
-    "transform": [
-      "reactify"
-    ]
-  }
+  "license": "MIT"
 }
