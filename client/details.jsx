@@ -46,21 +46,34 @@ module.exports = React.createClass({
 
 var DetailsHeader = React.createClass({
 	render: function(){
-			var email = this.props.email;
-			if (!email) { return <div></div>; }
-			var from = email.from[0];
-			var to = email.to;
+		var email = this.props.email;
+		if (!email) { return <div></div>; }
+		var from = email.from[0];
+		var to = email.to;
+		var cc = email.cc;
+		var bcc = email.bcc;
+
+		var renderAddresses = function(addresses, label) {
+			if (!addresses) return;
+			return (
+				<span>
+					<dt>{label}</dt><dd className="to">
+						{addresses.map(function (to, i) {
+						 return (
+							 <span className="address" key={i}>{to.name} &lt;{to.address}&gt;</span>
+							);
+						})}
+					</dd>
+				</span>
+			);
+		};
 
 		return (
 			<dl className="details-header">
 				<dt>From:</dt><dd className="from">{from.name} &lt;{from.address}&gt;</dd>
-				<dt>To:</dt><dd className="to">
-					{email.to.map(function (to, i) {
-					 return (
-						 <span className="address" key={i}>{to.name} &lt;{to.address}&gt;</span>
-						);
-					}, this)}
-				</dd>
+				{renderAddresses(email.to, "To:")}
+				{renderAddresses(email.cc, "Cc:")}
+				{renderAddresses(email.bcc, "Bcc:")}
 				<dt>Date:</dt><dd className="date">{email.headers.date}</dd>
 				<dt>Subject:</dt><dd className="subject">{email.subject}</dd>
 			</dl>
