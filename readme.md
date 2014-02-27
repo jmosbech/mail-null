@@ -5,9 +5,9 @@ Meet `/mail/null`, a dummy SMTP server for development. Instead of relaying mess
 
 ## Installation
 ```
-npm install
+npm install mail-null
 ```
-## Startup
+## Start
 ```
 npm start
 ```
