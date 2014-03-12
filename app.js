@@ -21,7 +21,7 @@ if (!debug) {
 	transforms.push(uglifyify);
 }
 app.get('/bundle.js', browserify.serve({
-	entry: './client/app.jsx',
+	entry: path.join(__dirname, 'client/app.jsx'),
 	debug: debug,
 	watch: debug,
 	transforms: transforms,
