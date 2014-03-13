@@ -1,6 +1,6 @@
 {
   "name": "mail-null",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "description": "Fake SMTP server that doesn't deliver the received mails. Useful for debugging and testing apps that send email.",
   "bin": "./bin/mail-null",
   "scripts": {
@@ -8,16 +8,17 @@
     "watch": "nodemon ."
   },
   "dependencies": {
-    "simplesmtp": "~0.3.20",
-    "express": "3.3.5",
-    "stylus": "*",
-    "mailparser": "0.3.6",
-    "socket.io": "~0.9.16",
-    "react": "^0.9.0",
-    "connect-browserify": "~1.0.0",
-    "reactify": "^0.7.0",
+    "connect-browserify": "^2.0.0",
     "envify": "^1.2.1",
-    "uglifyify": "^1.2.3"
+    "express": "^3.5.0",
+    "mailparser": "^0.4.1",
+    "nodemailer": "^0.5.15",
+    "react": "^0.9.0",
+    "reactify": "^0.10.0",
+    "simplesmtp": "^0.3.23",
+    "socket.io": "^0.9.16",
+    "stylus": "^0.42.3",
+    "uglifyify": "^2.0.0"
   },
   "devDependencies": {
     "nodemailer": "~0.5.2",
