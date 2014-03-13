@@ -3,6 +3,8 @@ Tired of accidentally sending test mails from your development environment to re
 
 Meet `/mail/null`, a dummy SMTP server for development. Instead of relaying messages it renders them in a simple web interface for easy browsing.
 
+[![Dependency Status](https://david-dm.org/jmosbech/mail-null.png)](https://david-dm.org/jmosbech/mail-null)
+
 ## Installation
 ```
 npm install -g mail-null
