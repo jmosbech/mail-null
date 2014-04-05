@@ -38,7 +38,6 @@ module.exports = React.createClass({
 					src={"data:text/html;charset=utf-8," + encodeURIComponent(html)}
 					frameBorder="0"
 					scrolling="no"></iframe></div>}
-
 			</div>
 			);
 	}
@@ -52,6 +51,7 @@ var DetailsHeader = React.createClass({
 		var to = email.to;
 		var cc = email.cc;
 		var bcc = email.bcc;
+		var attachments = email.attachments;
 
 		var renderAddresses = function(addresses, label) {
 			if (!addresses) return;
@@ -68,6 +68,25 @@ var DetailsHeader = React.createClass({
 			);
 		};
 
+		var renderAttachments = function(attachments) {
+			if (!attachments) return;
+
+			return (
+				<dd>
+					{attachments.map(function(att, i) {
+						return (
+							<a href={'data:' + att.contentType + ';base64,' + att.content}
+								className="attachment"
+								key={i}
+								download={att.fileName}>
+								{att.fileName}
+							</a>
+						);
+					})}
+				</dd>
+			);
+		};
+
 		return (
 			<dl className="details-header">
 				<dt>From:</dt><dd className="from">{from.name} &lt;{from.address}&gt;</dd>
@@ -76,6 +95,7 @@ var DetailsHeader = React.createClass({
 				{renderAddresses(email.bcc, "Bcc:")}
 				<dt>Date:</dt><dd className="date">{email.headers.date}</dd>
 				<dt>Subject:</dt><dd className="subject">{email.subject}</dd>
+				<dt>Attachments:</dt>{renderAttachments(attachments)}
 			</dl>
 		);
 	}

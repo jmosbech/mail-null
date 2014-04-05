@@ -71,12 +71,12 @@ body {
 }
 .details-header dt {
   float: left;
-  width: 70px;
+  width: 100px;
   text-align: right;
   padding-right: 10px;
 }
 .details-header dd {
-  margin-left: 70px;
+  margin-left: 100px;
 }
 .details-header .address:after {
   content: "; ";
@@ -91,4 +91,7 @@ body {
 .details-content {
   width: 100%;
   display: block;
+}
+.attachment {
+  padding-right: 15px;
 }
