@@ -1,2 +1,2 @@
-var smtp = require('./smtp');
-var app = require('./app');
+require('./smtp');
+require('./app');
