@@ -17,7 +17,8 @@
     "simplesmtp": "^0.3.23",
     "socket.io": "^0.9.16",
     "stylus": "^0.42.3",
-    "uglifyify": "^2.0.0"
+    "uglifyify": "^2.0.0",
+    "filesize": "~2.0.3"
   },
   "devDependencies": {
     "nodemailer": "~0.5.2",

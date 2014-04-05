@@ -1,6 +1,7 @@
 /** @jsx React.DOM */
 
 var React = require('react');
+var filesize = require('filesize');
 
 module.exports = React.createClass({
 	handleMessageEvent: function(e){
@@ -75,12 +76,15 @@ var DetailsHeader = React.createClass({
 				<dd>
 					{attachments.map(function(att, i) {
 						return (
-							<a href={'data:' + att.contentType + ';base64,' + att.content}
-								className="attachment"
-								key={i}
-								download={att.fileName}>
-								{att.fileName}
-							</a>
+							<span className="attachment">
+								<a href={'data:' + att.contentType + ';base64,' + att.content}
+									className="attachment-name"
+									key={i}
+									download={att.fileName}>
+									{att.fileName}
+								</a>
+								<span className="attachment-size">{filesize(att.length)}</span>
+							</span>
 						);
 					})}
 				</dd>

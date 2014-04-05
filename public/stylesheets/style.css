@@ -95,3 +95,9 @@ body {
 .attachment {
   padding-right: 15px;
 }
+.attachment-name {
+  padding-right: 5px;
+}
+.attachment-size {
+  color: #808080;
+}
