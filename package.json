@@ -12,7 +12,7 @@
     "envify": "^1.2.1",
     "express": "^3.5.0",
     "mailparser": "^0.4.1",
-    "react": "^0.9.0",
+    "react": "^0.10.0",
     "reactify": "^0.10.0",
     "simplesmtp": "^0.3.23",
     "socket.io": "^0.9.16",
