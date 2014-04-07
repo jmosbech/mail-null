@@ -21,7 +21,7 @@ module.exports = React.createClass({
 	},
 	render: function () {
 		var email = this.props.email;
-		var html = '';
+		var html = '<base target="_blank" />';
 		if (email) {
 			html = email.html || '<pre>' + (email.text || '') + '</pre>';
 			html += '<script>window.parent.postMessage({height: document.body.scrollHeight}, "*");/*'+email.headers['message-id']+'*/</script>';
@@ -55,10 +55,11 @@ var DetailsHeader = React.createClass({
 		var attachments = email.attachments;
 
 		var renderAddresses = function(addresses, label) {
-			if (!addresses) return;
+			if (!addresses || addresses.length === 0) return;
 			return (
 				<span>
-					<dt>{label}</dt><dd className="to">
+					<dt>{label}</dt>
+					<dd>
 						{addresses.map(function (to, i) {
 						 return (
 							 <span className="address" key={i}>{to.name} &lt;{to.address}&gt;</span>
