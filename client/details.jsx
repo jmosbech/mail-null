@@ -23,7 +23,7 @@ module.exports = React.createClass({
 		var email = this.props.email;
 		var html = '<base target="_blank" />';
 		if (email) {
-			html = email.html || '<pre>' + (email.text || '') + '</pre>';
+			html += email.html || '<pre>' + (email.text || '') + '</pre>';
 			html += '<script>window.parent.postMessage({height: document.body.scrollHeight}, "*");/*'+email.headers['message-id']+'*/</script>';
 			email.attachments.forEach(function(attachment){
 				var regex = new RegExp('cid:' + attachment.contentId, 'g');
