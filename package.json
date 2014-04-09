@@ -13,10 +13,10 @@
     "express": "^3.5.0",
     "mailparser": "^0.4.1",
     "react": "^0.10.0",
-    "reactify": "^0.10.0",
+    "reactify": "^0.11.0",
     "simplesmtp": "^0.3.23",
     "socket.io": "^0.9.16",
-    "stylus": "^0.42.3",
+    "stylus": "^0.43.1",
     "uglifyify": "^2.0.0",
     "filesize": "~2.0.3"
   },
