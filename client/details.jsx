@@ -88,17 +88,24 @@ var DetailsContent = React.createClass({
 		);
 	},
 	render: function() {
-		if (!this.props.email) { return <div></div>; }
+		var email = this.props.email;
+		if (!email) { return <div></div>; }
 
 		var view = this.props.view;
 
 		if(view === 'html') {
-			return this.renderHtml();
-		} else if(view === 'text') {
-			return this.renderText();
-		} else {
-			return this.renderHeaders();
+			if(email.html) {
+				return this.renderHtml();
+			}
+
+			view = 'text';
 		}
+
+		if(view === 'text' && email.text) {
+			return this.renderText();
+		}
+
+		return this.renderHeaders();
 	}
 });
 
