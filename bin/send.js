@@ -21,7 +21,7 @@ var message = {
 	},
 
 	// plaintext body
-	text: 'Hello to myself!',
+	text: 'Hello to myself!\nFrom myself',
 
 	// HTML body
 	html:'<p><b>Hello</b> to myself <img src="cid:note@node"/></p>',

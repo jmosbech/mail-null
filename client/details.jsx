@@ -9,6 +9,12 @@ module.exports = React.createClass({
 		var iframe = this.refs.iframe.getDOMNode();
 		iframe.style.height = e.data.height + 'px';
 	},
+	handleViewSelected: function(view) {
+		this.setState({ view: view });
+	},
+	getInitialState: function() {
+		return { view: 'html' };
+	},
 	componentDidMount: function(){
 		window.addEventListener('message', this.handleMessageEvent);
 	},
@@ -17,30 +23,89 @@ module.exports = React.createClass({
 	},
 	componentWillReceiveProps: function(newProps){
 		if(newProps.email === this.props.email) return;
+
+		this.setState({ view: 'html' });
 		this.handleMessageEvent({data: {height: 0}});
 	},
 	render: function () {
 		var email = this.props.email;
-		var html = '<base target="_blank" />';
-		if (email) {
-			html += email.html || '<pre>' + (email.text || '') + '</pre>';
-			html += '<script>window.parent.postMessage({height: document.body.scrollHeight}, "*");/*'+email.headers['message-id']+'*/</script>';
-			email.attachments.forEach(function(attachment){
-				var regex = new RegExp('cid:' + attachment.contentId, 'g');
-				html = html.replace(regex, "data:image/png;base64," + attachment.content);
-			});
-		}
+
 		return (
 			<div className="details">
 				<DetailsHeader email={email} />
-				{html && <div className="iframe-container"><iframe
-					ref="iframe"
-					className="details-content"
-					src={"data:text/html;charset=utf-8," + encodeURIComponent(html)}
-					frameBorder="0"
-					scrolling="no"></iframe></div>}
+				<DetailsContent email={email} view={this.state.view} />
+				<DetailsFooter email={email} onViewSelected={this.handleViewSelected} />
 			</div>
-			);
+		);
+	}
+});
+
+var DetailsContent = React.createClass({
+	renderIframeContent: function(content) {
+		var email = this.props.email;
+		var html = '<base target="_blank" />';
+		html += content;
+		html += '<script>window.parent.postMessage({height: document.body.scrollHeight}, "*");/*'+email.headers['message-id']+'*/</script>';
+
+		email.attachments.forEach(function(attachment){
+			var regex = new RegExp('cid:' + attachment.contentId, 'g');
+			html = html.replace(regex, "data:image/png;base64," + attachment.content);
+		});
+
+		return (
+			<div className="iframe-container"><iframe
+				ref="iframe"
+				className="details-content"
+				src={"data:text/html;charset=utf-8," + encodeURIComponent(html)}
+				frameBorder="0"
+				scrolling="no"></iframe>
+			</div>
+		);
+	},
+	renderHtml: function() {
+		return this.renderIframeContent(this.props.email.html);
+	},
+	renderText: function() {
+		return this.renderIframeContent('<pre>' + this.props.email.text + '</pre>');
+	},
+	renderHeaders: function() {
+		var headers = this.props.email.headers;
+		var keys = Object.keys(headers);
+
+		return (
+			<div className="headers-container">
+				<dl>
+					{keys.map(function(key) {
+						return (
+							<span>
+								<dt>{key}:</dt>
+								<dd>{[].concat(headers[key]).join(', ')}</dd>
+							</span>
+						);
+					})}
+				</dl>
+			</div>
+		);
+	},
+	render: function() {
+		var email = this.props.email;
+		if (!email) { return <div></div>; }
+
+		var view = this.props.view;
+
+		if(view === 'html') {
+			if(email.html) {
+				return this.renderHtml();
+			}
+
+			view = 'text';
+		}
+
+		if(view === 'text' && email.text) {
+			return this.renderText();
+		}
+
+		return this.renderHeaders();
 	}
 });
 
@@ -102,6 +167,29 @@ var DetailsHeader = React.createClass({
 				<dt>Subject:</dt><dd className="subject">{email.subject}</dd>
 				<dt>Attachments:</dt>{renderAttachments(attachments)}
 			</dl>
+		);
+	}
+});
+
+var DetailsFooter = React.createClass({
+	onClick: function(view) {
+		this.props.onViewSelected(view);
+		return false;
+	},
+	render: function() {
+		var email = this.props.email;
+		if (!email) { return <div></div>; }
+
+		var hide = function(prop) {
+			return prop ? {} : { display: 'none' };
+		};
+
+		return (
+			<div className="details-footer">
+				<a style={hide(email.html)} onClick={this.onClick.bind(null, 'html')} href="javascript:void(0);">View HTML</a>
+				<a style={hide(email.text)} onClick={this.onClick.bind(null, 'text')} href="javascript:void(0);">View text</a>
+				<a onClick={this.onClick.bind(null, 'headers')} href="javascript:void(0);">View headers</a>
+			</div>
 		);
 	}
 });
