@@ -3,29 +3,32 @@
 var React = require('react');
 var filesize = require('filesize');
 
+var getAvailableView = function(email, view) {
+	if(view === 'html') {
+		if(email.html) {
+			return view;
+		}
+
+		view = 'text';
+	}
+
+	if(view === 'text' && email.text) {
+		return view;
+	}
+
+	return 'headers';
+};
+
 module.exports = React.createClass({
-	handleMessageEvent: function(e){
-		if (!this.refs || !this.refs.iframe) return;
-		var iframe = this.refs.iframe.getDOMNode();
-		iframe.style.height = e.data.height + 'px';
-	},
 	handleViewSelected: function(view) {
 		this.setState({ view: view });
 	},
 	getInitialState: function() {
 		return { view: 'html' };
 	},
-	componentDidMount: function(){
-		window.addEventListener('message', this.handleMessageEvent);
-	},
-	componentWillUnmount: function(){
-		window.removeEventListener('message', this.handleMessageEvent);
-	},
 	componentWillReceiveProps: function(newProps){
 		if(newProps.email === this.props.email) return;
-
-		this.setState({ view: 'html' });
-		this.handleMessageEvent({data: {height: 0}});
+		this.setState({ view: getAvailableView(newProps.email, 'html') });
 	},
 	render: function () {
 		var email = this.props.email;
@@ -41,6 +44,21 @@ module.exports = React.createClass({
 });
 
 var DetailsContent = React.createClass({
+	handleMessageEvent: function(e){
+		if (!this.refs || !this.refs.iframe) return;
+		var iframe = this.refs.iframe.getDOMNode();
+		iframe.style.height = e.data.height + 'px';
+	},
+	componentDidMount: function(){
+		window.addEventListener('message', this.handleMessageEvent);
+	},
+	componentWillUnmount: function(){
+		window.removeEventListener('message', this.handleMessageEvent);
+	},
+	componentWillReceiveProps: function(newProps) {
+		if(newProps.view === this.props.view && newProps.email === this.props.email) return;
+		this.handleMessageEvent({data: {height: 0}});
+	},
 	renderIframeContent: function(content) {
 		var email = this.props.email;
 		var html = '<base target="_blank" />';
@@ -58,6 +76,7 @@ var DetailsContent = React.createClass({
 				className="details-content"
 				src={"data:text/html;charset=utf-8," + encodeURIComponent(html)}
 				frameBorder="0"
+				style={{height: 0}}
 				scrolling="no"></iframe>
 			</div>
 		);
@@ -94,14 +113,9 @@ var DetailsContent = React.createClass({
 		var view = this.props.view;
 
 		if(view === 'html') {
-			if(email.html) {
-				return this.renderHtml();
-			}
-
-			view = 'text';
+			return this.renderHtml();
 		}
-
-		if(view === 'text' && email.text) {
+		if(view === 'text') {
 			return this.renderText();
 		}
 
