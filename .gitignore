@@ -2,3 +2,4 @@ node_modules
 npm-debug.log
 .idea
 data.json
+public/stylesheets/style.css
