@@ -1,4 +1,6 @@
 var express = require('express');
+var logger = require('morgan');
+var errorhandler = require('errorhandler');
 var http = require('http');
 var path = require('path');
 var storage = require('./lib/storage');
@@ -9,13 +11,17 @@ var envify = require('envify');
 
 var app = express();
 
+var debug = process.env.NODE_ENV !== 'production';
+
 // all environments
 app.set('port', process.env.PORT || 3000);
-app.use(express.logger('dev'));
+app.use(logger('dev'));
 
-app.use(require('stylus').middleware(path.join(__dirname, 'public')));
+app.use(require('stylus').middleware({
+	src: path.join(__dirname, 'public'),
+	compress: !debug
+}));
 
-var debug = process.env.NODE_ENV !== 'production';
 var transforms = [reactify, envify];
 if (!debug) {
 	transforms.push(uglifyify);
@@ -32,7 +38,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 // development only
 if ('development' === app.get('env')) {
-	app.use(express.errorHandler());
+	app.use(errorhandler());
 }
 
 var server = http.createServer(app).listen(app.get('port'), function () {
