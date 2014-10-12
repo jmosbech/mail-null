@@ -27,18 +27,27 @@ var MailItem = React.createClass({
 	render: function () {
 		var email = this.props.email;
 		var classes = 'message';
+		var email;
 		if (this.props.selected) {
 			classes += ' selected';
 		}
 
-		return this.transferPropsTo(
-			<li className={classes} >
-				<div className="from">
-					{this.props.email.from[0].name} &lt;{email.from[0].address}&gt;
-				</div>
-				<div className="subject">{email.subject}</div>
-				<div className="date">{email.headers.date}</div>
-			</li>
-			);
+		try {
+			email = this.transferPropsTo(
+				<li className={classes} >
+					<div className="from">
+						{this.props.email.from[0].name} &lt;{email.from[0].address}&gt;
+					</div>
+					<div className="subject">{email.subject}</div>
+					<div className="date">{email.headers.date}</div>
+				</li>
+				);
+		} catch (e) {
+			setTimeout(function () {
+				throw e;
+			});
+			email = <div></div>;
+		}
+		return email;
 	}
 });
