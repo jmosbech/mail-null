@@ -5,7 +5,7 @@ var storage = require('./lib/storage');
 var port = process.env.SMTP_PORT || 2525;
 
 simplesmtp.createSimpleServer(
-	{SMTPBanner: '/mail/null - where your test emails go to die'},
+	{disableSTARTTLS: true, ignoreTLS: true, SMTPBanner: '/mail/null - where your test emails go to die'},
 	function (req) {
 		var mailparser = new MailParser();
 		mailparser.on('end', function (email) {
