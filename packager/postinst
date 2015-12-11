@@ -1,0 +1,9 @@
+#!/bin/sh
+
+set -e
+
+APP_NAME="mail-null"
+CLI="$APP_NAME"
+
+$CLI scale main=0 || true
+$CLI scale main=1 || true
