@@ -20,12 +20,12 @@
     "reactify": "^1.1.1",
     "simplesmtp": "^0.3.23",
     "socket.io": "^1.5.1",
-    "stylus": "^0.45.1",
-    "uglifyify": "^2.0.0"
+    "stylus": "^0.54.5",
+    "uglifyify": "^3.0.4"
   },
   "devDependencies": {
     "nodemailer": "~0.5.2",
-    "nodemon": "~1.0.14"
+    "nodemon": "~1.11.0"
   },
   "keywords": [
     "smtp",
