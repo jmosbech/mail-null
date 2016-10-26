@@ -48,8 +48,6 @@ var server = http.createServer(app).listen(app.get('port'), function () {
 
 var io = require('socket.io').listen(server);
 
-io.set('log level', 1); // warn
-
 io.sockets.on('connection', function (socket) {
 	socket.emit('init', storage.mails);
 	socket.on('clear_all_emails', function (data) {
