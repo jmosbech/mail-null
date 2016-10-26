@@ -1,6 +1,6 @@
 {
   "name": "mail-null",
-  "version": "0.0.11",
+  "version": "0.0.12",
   "description": "Fake SMTP server that doesn't deliver the received mails. Useful for debugging and testing apps that send email.",
   "bin": "./bin/mail-null",
   "scripts": {
