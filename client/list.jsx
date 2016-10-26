@@ -12,7 +12,7 @@ module.exports = React.createClass({
 						<MailItem
 							key={i}
 							email={email}
-							onClick={this.props.onEmailSelected.bind(null, email)}
+							onEmailSelected={this.props.onEmailSelected}
 							selected={this.props.selected === email}
 						/>
 						);
@@ -33,15 +33,13 @@ var MailItem = React.createClass({
 		}
 
 		try {
-			email = this.transferPropsTo(
-				<li className={classes} >
+			email = <li className={classes} onClick={this.props.onEmailSelected.bind(null, email)}>
 					<div className="from">
 						{this.props.email.from[0].name} &lt;{email.from[0].address}&gt;
 					</div>
 					<div className="subject">{email.subject}</div>
 					<div className="date">{email.headers.date}</div>
-				</li>
-				);
+				</li>;
 		} catch (e) {
 			setTimeout(function () {
 				throw e;

@@ -1,6 +1,8 @@
 /** @jsx React.DOM */
 
 var React = require('react');
+var ReactDOM = require('react-dom');
+
 var List = require('./list.jsx');
 var Details = require('./details.jsx');
 var Menu = require('./menu.jsx');
@@ -35,7 +37,7 @@ var emails = [];
 
 function init(mails) {
     emails = mails;
-    React.renderComponent(<App emails={emails.slice().reverse()}/>, document.body);
+    ReactDOM.render(<App emails={emails.slice().reverse()}/>, document.getElementById('app'));
 }
 
 function clearAllMails() {

@@ -1,6 +1,8 @@
 /** @jsx React.DOM */
 
 var React = require('react');
+var ReactDOM = require('react-dom');
+
 var filesize = require('filesize');
 
 var getAvailableView = function(email, view) {
@@ -50,7 +52,7 @@ module.exports = React.createClass({
 var DetailsContent = React.createClass({
 	handleMessageEvent: function(e){
 		if (!this.refs || !this.refs.iframe) return;
-		var iframe = this.refs.iframe.getDOMNode();
+		var iframe = ReactDOM.findDOMNode(this.refs.iframe);
 		iframe.style.height = e.data.height + 'px';
 	},
 	componentDidMount: function(){
@@ -98,9 +100,9 @@ var DetailsContent = React.createClass({
 		return (
 			<div className="headers-container">
 				<dl>
-					{keys.map(function(key) {
+					{keys.map(function(key, i) {
 						return (
-							<span>
+							<span key={key}>
 								<dt>{key}:</dt>
 								<dd>{[].concat(headers[key]).join(', ')}</dd>
 							</span>
@@ -160,7 +162,7 @@ var DetailsHeader = React.createClass({
 				<dd>
 					{attachments.map(function(att, i) {
 						return (
-							<span className="attachment">
+							<span className="attachment" key={i}>
 								<a href={'data:' + att.contentType + ';base64,' + att.content}
 									className="attachment-name"
 									key={i}

@@ -8,19 +8,20 @@
     "watch": "nodemon ."
   },
   "dependencies": {
-    "connect-browserify": "^2.0.1",
-    "envify": "^1.2.1",
-    "express": "^4.3.1",
+    "connect-browserify": "^4.0.0",
+    "envify": "^3.4.1",
+    "errorhandler": "^1.0.1",
+    "express": "^4.14.0",
+    "filesize": "^2.0.4",
     "mailparser": "^0.4.1",
-    "react": "^0.10.0",
-    "reactify": "^0.13.1",
+    "morgan": "^1.1.1",
+    "react": "^15.3.2",
+    "react-dom": "^15.3.2",
+    "reactify": "^1.1.1",
     "simplesmtp": "^0.3.23",
     "socket.io": "^0.9.16",
     "stylus": "^0.45.1",
-    "uglifyify": "^2.0.0",
-    "filesize": "~2.0.3",
-    "morgan": "^1.1.1",
-    "errorhandler": "^1.0.1"
+    "uglifyify": "^2.0.0"
   },
   "devDependencies": {
     "nodemailer": "~0.5.2",
