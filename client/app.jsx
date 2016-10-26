@@ -13,18 +13,17 @@ var App = React.createClass({
         this.setState({selected: email});
     },
     removeAllEmails: function () {
+        this.setState({selected: null});
         clearAllMails();
     },
     render: function () {
         return (
             <div className="app">
-
                 <List emails={this.props.emails}
                       selected={this.state.selected}
                       onEmailSelected={this.handleEmailSelected}/>
                 <Details email={this.state.selected}/>
-                <Menu removeAllEmails={this.removeAllEmails}
-                      />
+                <Menu removeAllEmails={this.removeAllEmails}/>
             </div>);
     }
 });

@@ -4,6 +4,10 @@ var React = require('react');
 var filesize = require('filesize');
 
 var getAvailableView = function(email, view) {
+	if(!email) {
+		return view;
+	}
+
 	if(view === 'html') {
 		if(email.html) {
 			return view;
