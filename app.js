@@ -54,6 +54,8 @@ io.sockets.on('connection', function (socket) {
 	socket.emit('init', storage.mails);
 	socket.on('clear_all_emails', function (data) {
 		storage.clearAll();
+		// update all clients
+		io.sockets.emit('init', storage.mails);
 	});
 	storage.on('got_mail', function (mail) {
 		socket.emit('got_mail', mail);
