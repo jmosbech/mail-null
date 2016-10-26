@@ -10,8 +10,7 @@ simplesmtp.createSimpleServer(
 		var mailparser = new MailParser();
 		mailparser.on('end', function (email) {
 			email.attachments = (email.attachments||[]).map(function(attachment){
-				var b = new Buffer(attachment.content);
-				attachment.content = b.toString('base64');
+				attachment.content = attachment.content.toString('base64');
 				return attachment;
 			});
 			storage.push(email);

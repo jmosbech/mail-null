@@ -1,7 +1,7 @@
 var nodemailer = require('nodemailer');
 
 // Create a SMTP transport object
-var transport = nodemailer.createTransport("SMTP", {
+var transport = nodemailer.createTransport({
 	port: 2525
 });
 
@@ -29,21 +29,21 @@ var message = {
 
 	// Binary Buffer attachment
 	attachments: [{
-		fileName: 'image.png',
-		contents: new Buffer('iVBORw0KGgoAAAANSUhEUgAAABAAAAAQAQMAAAAlPW0iAAAABlBMVEUAAAD/' +
+		filename: 'image.png',
+		content: new Buffer('iVBORw0KGgoAAAANSUhEUgAAABAAAAAQAQMAAAAlPW0iAAAABlBMVEUAAAD/' +
 							'//+l2Z/dAAAAM0lEQVR4nGP4/5/h/1+G/58ZDrAz3D/McH8yw83NDDeNGe4U' +
 							'g9C9zwz3gVLMDA/A6P9/AFGGFyjOXZtQAAAAAElFTkSuQmCC', 'base64'),
 		cid: 'note@node'
 	}]
 };
 
-transport.sendMail(message, function(error){
+transport.sendMail(message, function(error, info){
 	if(error){
 		console.log('Error occured');
 		console.log(error.message);
 		return;
 	}
-	console.log('Message sent successfully!');
+	console.log('Message sent: ' + info.response);
 
 	// if you don't want to use this transport object anymore, uncomment following line
 	transport.close(); // close the connection pool
