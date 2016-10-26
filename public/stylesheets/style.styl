@@ -19,11 +19,26 @@ body
 .app
   display: table
 
+
 .app,
 .details
-  min-height: 100%
   height: 100%
+  min-height: 100%
   width: 100%
+
+button
+  height: 30px
+
+button.warn
+  background-color: #f44336;
+  color:white;
+
+.menu
+  display: table-row
+  height: 50px
+
+.menu ul
+  list-style-type: none
 
 .sidebar
   display: table-cell
@@ -33,6 +48,8 @@ body
   list-style-type: none
   padding: 0
   margin: 0
+  height: 100%
+  overflow-y: auto
 
 .message
   border-top: 1px solid transparent
@@ -60,12 +77,14 @@ body
   box-shadow: inset 0px 5px 15px 0px rgba(0,0,0,0.10);
 
 .details
-  display: table-cell
   border-left: 1px solid #a7a7a7
   width: auto
+  overflow-y: auto
+  display: block
 
 .details-header
   margin: 10px
+  margin-top: 0
   background-color: #e6e6e6
   border-radius: 5px
   padding: 10px
